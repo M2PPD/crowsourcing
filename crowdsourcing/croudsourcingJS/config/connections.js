@@ -28,9 +28,9 @@ module.exports.connections = {
   * Installed by default.                                                    *
   *                                                                          *
   ***************************************************************************/
-  localDiskDb: {
+  /*localDiskDb: {
     adapter: 'sails-disk'
-  },
+  },*/
   
   rest: {
     adapter: 'sails-rest',
@@ -53,14 +53,24 @@ module.exports.connections = {
   * Run: npm install sails-mysql                                             *
   *                                                                          *
   ***************************************************************************/
-  // someMysqlServer: {
-  //   adapter: 'sails-mysql',
-  //   host: 'YOUR_MYSQL_SERVER_HOSTNAME_OR_IP_ADDRESS',
-  //   user: 'YOUR_MYSQL_USER', //optional
-  //   password: 'YOUR_MYSQL_PASSWORD', //optional
-  //   database: 'YOUR_MYSQL_DB' //optional
-  // },
-
+   /*someMysqlServer: {
+     adapter: 'sails-mysql',
+     host: 'ppdserveur.database.windows.net',
+     user: 'projetsql', //optional
+     password: 'Ppdcrowd1', //optional
+     database: 'PPD' //optional
+   }*/
+    sqlserver: {
+    adapter: 'sails-sqlserver',
+    user: 'projetsql',
+    password: 'Ppdcrowd1',
+    host: 'ppdserveur.database.windows.net', // azure database
+    database: 'PPD',
+    options: {
+      encrypt: true   // use this for Azure databases
+    }
+  }
+	 
   /***************************************************************************
   *                                                                          *
   * MongoDB is the leading NoSQL database.                                   *
