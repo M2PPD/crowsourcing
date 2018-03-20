@@ -34,19 +34,26 @@ public class CrowdsourcingApplication {
 				    // Establish the connection.
 				    connection = DriverManager.getConnection(connectionString);
 				
-				    // Define the SQL string.
-				    String sqlString = 
-						"CREATE TABLE Person (" + 
-				        	"[PersonID] [int] IDENTITY(1,1) NOT NULL," +
-				            "[LastName] [nvarchar](50) NOT NULL," + 
-				            "[FirstName] [nvarchar](50) NOT NULL)";
+				   // Define the SQL string.
+				    
+				    String sqlString =  "SELECT * FROM LIGNE;";
+				  
 				
 				    // Use the connection to create the SQL statement.
 				    statement = connection.createStatement();
-				
-				    // Execute the statement.
-				    statement.executeUpdate(sqlString);
-				
+		
+		                     resultSet = statement.executeQuery(sqlString); 
+
+		                        // Print results from select statement
+		                        System.out.println("Top 20 categories:");
+		                        while (resultSet.next())
+		                        {
+		                            System.out.println(resultSet.getString(1) + " "
+		                                + resultSet.getString(2));
+		                        }
+		                 connection.close();
+		                          
+
 				    // Provide a message when processing is complete.
 				    System.out.println("Processing complete.");
 				
