@@ -1,8 +1,16 @@
 package com.ppd.crowdsourcing;
 
 
-import java.sql.*;  
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import com.microsoft.sqlserver.jdbc.*;
+import com.ppd.crowdsourcing.entity.Ligne;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -24,8 +32,8 @@ public class CrowdsourcingApplication {
 				// defined in the java.sql library.
 				Connection connection = null;  // For making the connection
 				Statement statement = null;    // For the SQL statement
-				ResultSet resultSet = null;    // For the result set, if applicable
-				
+				ResultSet rs = null;    // For the result set, if applicable
+
 				try
 				{
 				    // Ensure the SQL Server driver class is available.
@@ -37,20 +45,27 @@ public class CrowdsourcingApplication {
 				   // Define the SQL string.
 				    
 				    String sqlString =  "SELECT * FROM LIGNE;";
-				  
+
 				
 				    // Use the connection to create the SQL statement.
 				    statement = connection.createStatement();
 		
-		                     resultSet = statement.executeQuery(sqlString); 
-
+		                     rs = statement.executeQuery(sqlString); 
+		                     ArrayList<Ligne> tabLigne = new ArrayList<Ligne>();
 		                        // Print results from select statement
 		                        System.out.println("Top 20 categories:");
-		                        while (resultSet.next())
+		                        while (rs.next())
 		                        {
-		                            System.out.println(resultSet.getString(1) + " "
-		                                + resultSet.getString(2));
+			                        
+			                        Ligne l = new Ligne(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6),rs.getString(7));
+			                        tabLigne.add (l);
 		                        }
+		                        
+		                        System.out.println("Boucle for avancée");
+		                        
+		                        for(Ligne l : tabLigne)
+		                         System.out.println(l.LignetoString(l));
+
 		                 connection.close();
 		                          
 
@@ -77,7 +92,7 @@ public class CrowdsourcingApplication {
 		                // Close resources.
 		                if (null != connection) connection.close();
 		                if (null != statement) statement.close();
-		                if (null != resultSet) resultSet.close();
+		                if (null != rs) rs.close();
 		            }
 		            catch (SQLException sqlException)
 		            {
