@@ -1,0 +1,13 @@
+<form action="/utilisateur/update/<%= user.id %>" method="POST" class="form-signin">
+<h2>Modification utilisateur</h2>
+
+
+<input value="<%= utilisateur.username %>" name="username" type="text" class="form-control" />
+<input value="<%= utilisateur.email %>" name="email" type="text" class="form-control" />
+<input value="<%= utilisateur.usertype %>" name="usertype" type="text" class="form-control" />
+
+<input type="submit" value="confirmer" class="btn btn-lg btn-primary btn-block" />
+
+<input type="hidden" name="_csrf" value="<%=_csrf%>" />
+
+</form>

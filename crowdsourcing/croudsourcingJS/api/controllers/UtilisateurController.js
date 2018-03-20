@@ -1,5 +1,5 @@
 /**
- * UserController.js
+ * utilisateurController.js
  *
  * @description :: Server-side logic for managing subscriptions
  * @help        :: See http://links.sailsjs.org/docs/controllers
@@ -19,17 +19,18 @@
 	
 	'create':function(req,res,next){
 		
-		User.create(req.params.all(),function userCreated(err,user){
+		utilisateur.create(req.params.all(),function utilisateurCreated(err,utilisateur){
 			
 			if (err) {
-				
+				console.log(utilisateur.id);
 				console.log(err);
-				return res.redirect('/user/new');
+				return res.redirect('/utilisateur/new');
 			
 			
 		}
+		  console.log(utilisateur.id);
 			
-			res.redirect('/user/show/'+user.id);
+			res.redirect('/utilisateur/show/'+utilisateur.id);
 		});
 			
 		
@@ -48,11 +49,11 @@ client.get("http://localhost:8080/cars", function (data, response) {
 	// raw response
 	console.log(response);
 });
-		   
+		 
 	
-        User.findOne(req.param('id'),function foundUser(err,user){
+        utilisateur.findOne(req.param('id'),function foundutilisateur(err,utilisateur){
             res.view({
-                user: user
+                utilisateur: utilisateur
             });
         }); 
        
@@ -60,44 +61,44 @@ client.get("http://localhost:8080/cars", function (data, response) {
 	
 	   edit: function (req,res,next){
         console.log("Le formulaire de modification de profil est affiché");
-        User.findOne(req.param('id'),function foundUser(err,user){
+        utilisateur.findOne(req.param('id'),function foundutilisateur(err,utilisateur){
 
-            if(!user) return next('L\'utilisateur n\'existe pas');  
+            if(!utilisateur) return next('L\'utilisateur n\'existe pas');  
             res.view({
-                user:user
+                utilisateur:utilisateur
             });
         });
     },
 	
 	  index:function(req,res,next){
-        User.find(function foundusers(err,users) {
+        utilisateur.find(function foundutilisateurs(err,utilisateurs) {
             res.view({
-                users:users
+                utilisateurs:utilisateurs
             });
         });
         console.log("Affichage de la liste de tous les utilisateurs");
       },
 	   update:function (req,res,next){
-        User.update(req.param('id'), req.params.all() ,function userUpdate(err)
+        utilisateur.update(req.param('id'), req.params.all() ,function utilisateurUpdate(err)
         {
             if(err){
-                return res.redirect('/user/edit/'+req.param('id'));
+                return res.redirect('/utilisateur/edit/'+req.param('id'));
             }
-            res.redirect('/user/show/'+req.param('id'));
+            res.redirect('/utilisateur/show/'+req.param('id'));
             console.log("Modification enregistrée avec succès");
         });
      },
 	     destroy: function (req,res,next){
-            User.findOne(req.param('id'),function foundUser(err,user){
+            utilisateur.findOne(req.param('id'),function foundutilisateur(err,utilisateur){
                 if(err) return next(err);
-                if(!user) return next('L\'utilisateur n\'existe pas');
+                if(!utilisateur) return next('L\'utilisateur n\'existe pas');
 
-                User.destroy(req.param('id'),function userDestroyed(err){
+                utilisateur.destroy(req.param('id'),function utilisateurDestroyed(err){
                     if(err) return next(err);
                 });
 
-                res.redirect('/user');
-                console.log("Etudiant supprimé");
+                res.redirect('/utilisateur');
+                console.log("utilisateur supprimé");
             });
         }
 

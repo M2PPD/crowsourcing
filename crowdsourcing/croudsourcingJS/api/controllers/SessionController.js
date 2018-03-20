@@ -13,23 +13,23 @@ module.exports = {
 	
 	create: function(req,res,next){
 
-     	if(!req.param('email') || !req.param('password')){
+     	if(!req.param('username') || !req.param('password')){
      		
-     		var usernamePasswordRequiredError=[{name:'usernamePasswordRequired',message:"vous devez entrer une adresse email et un mot de passe"}]
+     		var utilisateurnamePasswordRequiredError=[{name:'utilisateurnamePasswordRequired',message:"vous devez entrer un identifiant et un mot de passe"}]
 
      		req.session.flas={
-     			err:usernamePasswordRequiredError
+     			err:utilisateurnamePasswordRequiredError
      		}
 
      		res.redirect('/session/new');
      		return;
      }
 
-     User.findOneByEmail(req.param('email'),function foundUser(err,user){
+     utilisateur.findOneByUsername(req.param('username'),function foundutilisateur(err,utilisateur){
      	 if (err) return next(err);
 
-     	 if(!user){
-     	 	var noAccountError=[{name:'noAccount',message:'L\'adresse email n\'a pas été trouver'}]
+     	 if(!utilisateur){
+     	 	var noAccountError=[{name:'noAccount',message:'L\'username n\'a pas été trouvé'}]
 
      	 	req.session.flash={
      	 		err: noAccountError
@@ -38,25 +38,25 @@ module.exports = {
      	 	return;
      	 }
 
-     bcrypt.compare(req.param('password'),user.encryptedPassword,function(err,valid){
+     bcrypt.compare(req.param('password'),utilisateur.encryptedPassword,function(err,valid){
      	if(err) return next(err);
 
      	if(!valid){
-     		var usernamePasswordMismatchError =[{name:'usernamePasswordMismatch',message:'Mot de passe non valide'}]
+     		var utilisateurnamePasswordMismatchError =[{name:'utilisateurnamePasswordMismatch',message:'Mot de passe non valide'}]
              req.session.flash={
-             	err:usernamePasswordMismatchError
+             	err:utilisateurnamePasswordMismatchError
              }  
-console.log(user.encryptedPassword);			 
+console.log(Utilisateur.encryptedPassword);			 
              res.redirect('/session/new');
 			 
              return;
      	}
 
      	req.session.authenticated=true;
-     	req.session.User=user;
+     	req.session.utilisateur=utilisateur;
   
 		 console.log("bon mdp");
-     	res.redirect('/user/show/' + user.id);
+     	res.redirect('/utilisateur/show/' +utilisateur.id);
      
 
      });

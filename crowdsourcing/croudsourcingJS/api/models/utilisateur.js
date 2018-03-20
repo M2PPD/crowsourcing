@@ -9,12 +9,12 @@ module.exports = {
 
   attributes: {
     schema:true,
-  	type:{
+  	usertype:{
   		type:'string',
   		required:false
   	},
   
-    name:{
+    username:{
   		type:'string',
   		required:true
   	},

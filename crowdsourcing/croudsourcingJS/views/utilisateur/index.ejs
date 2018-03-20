@@ -1,0 +1,47 @@
+<div class='container'>
+
+<table>
+<tr>
+<th width=1000px><font size="4.5"><span>Les utilisateurs</span></font><th>
+  <th> <a href="/utilisateur/new" class="btn btn-sm btn-success" style="margin-bottom:1px;">Ajouter un utilisateur</a><th>
+
+  </tr>
+
+  </table>
+
+  <table class='table' border=2 id="listatt" >
+  <tr>
+    <th height=50px width=100px>Id</th>
+    <th height=50px width=350px>Type</th>
+   <th height=50px width=350px>Identifiant</th>
+    <th height=50px width=450px>Email</th>
+    <th width=100px colspan=2></th>
+    
+  </tr>
+  
+  <% _.each(users,function(user) { %>
+ 
+ <tr data-id="<%= utilisateur.id %>" data-model="user">
+  <td><%= utilisateur.id %></td>
+  <td><%= utilisateur.usertype %></td>
+ <td><%= utilisateur.username %></td>
+  <td><%= utilisateur.email%></td>
+  
+  
+  <td> <a href="/utilisateur/edit/<%= utilisateur.id %>" class="btn btn-sm btn-primary">Modifier</a></td>
+   <td>
+   <a href="/utilisateur/destroy/<%= utilisateur.id %>" class="btn btn-sm btn-danger">Supprimer</a></td>
+ 
+
+  </tr>
+  
+
+   <% }) %>
+
+ </table>
+
+
+  </div>
+
+
+

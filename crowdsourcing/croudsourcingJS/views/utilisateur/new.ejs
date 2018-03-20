@@ -1,14 +1,20 @@
 
 <div style="margin-top:20px;">
 
-<form action="/user/create" method="POST" class="form-signin">
+<form action="/utilisateur/create" method="POST" class="form-signin">
 
 <h2 class="form signin-heading">Créer un compte</h2>
 
 
 
-<input type="text" class="form-control" placeholder="type" name="type">
-<input type="text" class="form-control" placeholder="votre nom" name="name">
+
+<SELECT calss="form-control" name="usertype" size="1">
+<OPTION>Demandeur
+<OPTION>Crowdeur
+
+</SELECT>
+
+<input type="text" class="form-control" placeholder="votre identifiant" name="username">
 <input type="text" class="form-control" placeholder="email" name="email">
 <input type="text" class="form-control" placeholder="mot de passe" name="password">
 <input type="text" class="form-control" placeholder="confirmation" name="confirmation">
