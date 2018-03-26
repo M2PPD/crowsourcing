@@ -55,9 +55,17 @@ console.log(Utilisateur.encryptedPassword);
      	req.session.authenticated=true;
      	req.session.utilisateur=utilisateur;
   
-		 console.log("bon mdp");
-     	res.redirect('/utilisateur/show/' +utilisateur.id);
-     
+		 console.log("bon mdp"+ req.session.authenticated);
+		 
+		if(utilisateur.usertype=="Demandeur"){
+			
+     	res.redirect('/demandeur/index/');
+		}
+		
+		else{
+			res.redirect('/crowder/index/');
+			
+		}
 
      });
      });
@@ -69,4 +77,5 @@ destroy: function(req,res,next){
 	res.redirect('/');
 }
 };
+
 
