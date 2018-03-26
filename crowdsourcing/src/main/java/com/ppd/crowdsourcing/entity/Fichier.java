@@ -33,17 +33,13 @@ public class Fichier {
 	private List<Ligne> lignes;
 	
 	public Fichier(int idFichier) {
-<<<<<<< HEAD
 		super();
 		this.id = idFichier;
 		
 	}
 	
 	public Fichier() {
-=======
->>>>>>> 2fe22d921e58a3a93e56745dd6c787dfac9bf25a
 		super();
-		this.id=idFichier;
 	}
 	
 

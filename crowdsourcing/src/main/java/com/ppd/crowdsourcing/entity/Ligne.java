@@ -8,25 +8,16 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Ligne {
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> 2fe22d921e58a3a93e56745dd6c787dfac9bf25a
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
 	private int numeroLigne;
-<<<<<<< HEAD
 	
 	@ManyToOne
 	private Fichier idFichier;
-	
-=======
-	@ManyToOne
-	private Fichier idFichier;
->>>>>>> 2fe22d921e58a3a93e56745dd6c787dfac9bf25a
+
 	private String champs1;
 	private String champs2;
 	private String champs3;
@@ -49,10 +40,6 @@ public class Ligne {
 
 	}
 
-<<<<<<< HEAD
-	
-=======
->>>>>>> 2fe22d921e58a3a93e56745dd6c787dfac9bf25a
 	public int getId() {
 		return id;
 	}
@@ -66,11 +53,7 @@ public class Ligne {
 	public void setNumeroLigne(int numeroLigne) {
 		this.numeroLigne = numeroLigne;
 	}
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> 2fe22d921e58a3a93e56745dd6c787dfac9bf25a
 	public Fichier getIdFichier() {
 		return idFichier;
 	}
