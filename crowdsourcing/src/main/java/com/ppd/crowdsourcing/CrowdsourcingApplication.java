@@ -18,7 +18,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CrowdsourcingApplication {
 
 	public static void main(String[] args) {
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 2fe22d921e58a3a93e56745dd6c787dfac9bf25a
 		SpringApplication.run(CrowdsourcingApplication.class, args);
 	}
 }
