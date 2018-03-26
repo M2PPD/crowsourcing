@@ -4,15 +4,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Ligne {
 	
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	
 	private int numeroLigne;
-	private int idFichier;
+	
+	@ManyToOne
+	private Fichier idFichier;
+	
 	private String champs1;
 	private String champs2;
 	private String champs3;
@@ -23,7 +28,7 @@ public class Ligne {
 		super();
 		this.id = id;
 		this.numeroLigne = numeroLigne;
-		this.idFichier = idFichier;
+		this.idFichier = new Fichier(idFichier);
 		this.champs1 = champs1;
 		this.champs2 = champs2;
 		this.champs3 = champs3;
@@ -36,8 +41,7 @@ public class Ligne {
 	}
 	
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	
 	public int getId() {
 		return id;
 	}
@@ -51,11 +55,11 @@ public class Ligne {
 	public void setNumeroLigne(int numeroLigne) {
 		this.numeroLigne = numeroLigne;
 	}
-	@OneToOne
-	public int getIdFichier() {
+	
+	public Fichier getIdFichier() {
 		return idFichier;
 	}
-	public void setIdFichier(int idFichier) {
+	public void setIdFichier(Fichier idFichier) {
 		this.idFichier = idFichier;
 	}
 	
