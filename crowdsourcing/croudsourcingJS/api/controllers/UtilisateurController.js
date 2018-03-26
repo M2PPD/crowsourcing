@@ -43,12 +43,12 @@
 var client = new Client();
 
 // direct way
-client.get("http://localhost:8080/cars", function (data, response) {
+/*client.get("http://localhost:8080/cars", function (data, response) {
 	// parsed response body as js object
 	console.log(data);
 	// raw response
 	console.log(response);
-});
+});*/
 		 
 	
         utilisateur.findOne(req.param('id'),function foundutilisateur(err,utilisateur){
