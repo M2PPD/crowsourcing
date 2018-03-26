@@ -32,9 +32,9 @@ public class Fichier {
 	@OneToMany(mappedBy="idFichierr", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Ligne> lignes;
 	
-	public Fichier() {
+	public Fichier(int idFichier) {
 		super();
-		
+		this.id=idFichier;
 	}
 	
 
