@@ -12,9 +12,12 @@ public class Ligne {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	
 	private int numeroLigne;
+	
 	@ManyToOne
 	private Fichier idFichier;
+
 	private String champs1;
 	private String champs2;
 	private String champs3;

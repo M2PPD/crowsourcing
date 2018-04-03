@@ -34,7 +34,12 @@ public class Fichier {
 	
 	public Fichier(int idFichier) {
 		super();
-		this.id=idFichier;
+		this.id = idFichier;
+		
+	}
+	
+	public Fichier() {
+		super();
 	}
 	
 
