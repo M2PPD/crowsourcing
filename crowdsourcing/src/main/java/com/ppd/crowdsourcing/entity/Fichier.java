@@ -29,7 +29,7 @@ public class Fichier {
 	@ManyToOne
 	private Theme idTheme;
 	
-	@OneToMany(mappedBy="idFichierr", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="idFichier", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Ligne> lignes;
 	
 	public Fichier(int idFichier) {

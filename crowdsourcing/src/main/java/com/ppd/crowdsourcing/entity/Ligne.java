@@ -32,6 +32,10 @@ public class Ligne {
 		this.champs4 = champs4;
 	}
 
+	public Ligne() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String LignetoString(Ligne l) {
 		return  l.getId() + " / " + l.getNumeroLigne() + " / " + l.getIdFichier().getId() + " / " + l.getChamps1() + " / " + l.getChamps2() + l.getChamps3() + " / " + l.getChamps4() ;
 
