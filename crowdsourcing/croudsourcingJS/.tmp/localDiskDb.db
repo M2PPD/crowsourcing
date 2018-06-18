@@ -13,6 +13,20 @@
         "updatedAt": "2018-03-05T12:23:12.429Z",
         "id": 1
       }
+    ],
+    "utilisateur": [
+      {
+        "usertype": "Demandeur",
+        "username": "tsila18",
+        "email": "tsila08@gmail.com",
+        "password": "tsila",
+        "confirmation": "tsila",
+        "_csrf": "null",
+        "encryptedPassword": "$2a$10$NKlkGmzb7q38MyrDhFgVZ.Bbkq/qnqjw7Zdx1R8m7luI4G/l5JIJW",
+        "createdAt": "2018-03-26T13:09:30.473Z",
+        "updatedAt": "2018-03-26T13:09:30.473Z",
+        "id": 1
+      }
     ]
   },
   "schema": {
@@ -42,10 +56,40 @@
       "updatedAt": {
         "type": "datetime"
       }
+    },
+    "utilisateur": {
+      "usertype": {
+        "type": "string"
+      },
+      "username": {
+        "type": "string"
+      },
+      "email": {
+        "type": "string",
+        "unique": true
+      },
+      "encryptedPassword": {
+        "type": "string"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
     }
   },
   "counters": {
     "user": {
+      "id": 1
+    },
+    "utilisateur": {
       "id": 1
     }
   }

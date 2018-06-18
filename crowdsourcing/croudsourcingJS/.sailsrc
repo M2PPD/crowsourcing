@@ -1,5 +1,17 @@
 {
   "generators": {
     "modules": {}
-  }
+  },
+  
+  "commands": {
+        "deploy": {
+            "module": "sails-deploy-azure"
+        }
+    },
+	
+	"azure": {
+    "sitename": "https://ppdcrowd.azurewebsites.net",
+    "username": "YOUR_USER",
+    "password": "YOUR_PASSWORD"
+    }
 }

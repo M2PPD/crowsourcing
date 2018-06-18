@@ -44,11 +44,18 @@
 	</div>
 	<div class="navbar-collapse collapse">
 	 <ul class="nav navbar-nav">
-	  <% if(session.authenticated) {%>
-	    <li class="active"><a href="/utilisateur/show/<%= session.utilisateur.id %>"><%= session.utilisateur.username %></a></li>
-		<li><a href="/utilisateur">Liste des utilisateurs</a></li>
-		<li><a href="#">hello</a></li>
+	  <% if ((session.authenticated)&&(session.utilisateur.usertype=="Demandeur")) {%>
+	    <li class="active"><a href="/demandeur/index/"><%= session.utilisateur.username %></a></li>
+		<li><a href="/demandeur/imports">Mes imports</a></li>
 		<% } %>
+		
+		
+		  <% if ((session.authenticated)&&(session.utilisateur.usertype=="Crowder")) {%>
+	    <li class="active"><a href="/crowder/index/"><%= session.utilisateur.username %></a></li>
+		
+		<% } %>
+		
+		
 	</ul>
 	<div class="navbar-right">
 	 <% if(session.authenticated) {%>
@@ -87,6 +94,7 @@
 
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/dependencies/bootstrap.js"></script>
     <!--SCRIPTS END-->
   </body>
 </html>

@@ -1,0 +1,39 @@
+<div class='container'>
+
+<h1>Traitement import</h1>
+
+
+
+<table>
+<tr>
+<th width=1000px><font size="4.5"><span></span></font><th>
+
+
+  </tr>
+
+  </table>
+
+  <table class='table' border=0 id="listatt" >
+<tr>
+    <th height=50px width=100px>Attribut</th>
+	    <th height=50px width=350px>Label</th>
+    <th height=50px width=350px>Type Attribut</th>
+  <th height=50px width=350px>Place</th>
+  </tr>
+
+
+ <% _.each(data,function(d) { %>
+ <tr>
+  <td><%= d.id %></td>
+  <td><%= d.label %></td>
+  <td><%= d.typeAtr %></td>
+  <td><%= d.place %></td>
+  </tr>
+  
+  
+    <% }) %>
+
+ </table>
+
+
+  </div>

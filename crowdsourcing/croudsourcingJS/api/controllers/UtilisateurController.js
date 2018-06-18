@@ -42,13 +42,12 @@
 
 var client = new Client();
 
-// direct way
-/*client.get("http://localhost:8080/cars", function (data, response) {
+client.get("http://localhost:8080/hello", function (data, response) {
 	// parsed response body as js object
 	console.log(data);
 	// raw response
 	console.log(response);
-});*/
+});
 		 
 	
         utilisateur.findOne(req.param('id'),function foundutilisateur(err,utilisateur){
@@ -79,7 +78,15 @@ var client = new Client();
         console.log("Affichage de la liste de tous les utilisateurs");
       },
 	   update:function (req,res,next){
-        utilisateur.update(req.param('id'), req.params.all() ,function utilisateurUpdate(err)
+		   
+	 require('bcrypt').hash(req.param('password'),10,function passwordEncrypted(err,encryptedPassword){
+  		if(err) return next(err);
+  		var encryptedPassword = encryptedPassword;
+		
+		 utilisateur.update(req.param('id'), {username:req.param('username'),
+											email:req.param('email'),
+											usertype:req.param('usertype'),
+											encryptedPassword:encryptedPassword},function utilisateurUpdate(err)
         {
             if(err){
                 return res.redirect('/utilisateur/edit/'+req.param('id'));
@@ -87,6 +94,9 @@ var client = new Client();
             res.redirect('/utilisateur/show/'+req.param('id'));
             console.log("Modification enregistrée avec succès");
         });
+
+  	});
+       
      },
 	     destroy: function (req,res,next){
             utilisateur.findOne(req.param('id'),function foundutilisateur(err,utilisateur){

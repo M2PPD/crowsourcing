@@ -46,7 +46,7 @@ module.exports = {
              req.session.flash={
              	err:utilisateurnamePasswordMismatchError
              }  
-console.log(Utilisateur.encryptedPassword);			 
+console.log(utilisateur.encryptedPassword);			 
              res.redirect('/session/new');
 			 
              return;

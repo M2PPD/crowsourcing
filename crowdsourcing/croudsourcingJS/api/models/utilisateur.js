@@ -9,6 +9,7 @@ module.exports = {
 
   attributes: {
     schema:true,
+	
   	usertype:{
   		type:'string',
   		required:false

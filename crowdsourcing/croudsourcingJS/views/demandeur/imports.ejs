@@ -1,0 +1,40 @@
+<div class='container'>
+
+<h1>Mes imports</h1>
+
+
+
+<table>
+<tr>
+<th width=1000px><font size="4.5"><span>Liste des imports</span></font><th>
+
+
+  </tr>
+
+  </table>
+
+  <table class='table' border=0 id="listatt" >
+  <tr>
+    <th height=50px width=100px>Id</th>
+    <th height=50px width=350px>Date import</th>
+  <th height=50px width=350px></th>
+  <th height=50px width=350px></th>
+  </tr>
+ 
+
+
+
+ <% _.each(listeImport,function(imp) { %>
+ <tr>
+  <td><%= imp.id %></td>
+  <td><%= imp.date_import%></td>
+  <td><a href="" type="button" class="btn btn-success">Traitement</a>&nbsp;&nbsp;<a href="/demandeur/traitementImport?id=<%= imp.id_demandeur_id %>" type="button" class="btn btn-primary">Voir les resultats</a></td>
+  </tr>
+  
+  
+    <% }) %>
+
+ </table>
+
+
+  </div>
