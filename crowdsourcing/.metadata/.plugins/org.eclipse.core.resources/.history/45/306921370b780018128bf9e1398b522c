@@ -1,0 +1,38 @@
+package ppdCrowd.Crowdsourcing.form;
+
+import java.io.File;
+
+import org.springframework.web.multipart.MultipartFile;
+
+public class ImportForm {
+
+	
+	  private String nomTheme;
+	    private File importFile;
+	    private String accessFile;
+	    private MultipartFile importFichier;
+
+	    public String getNomTheme() {
+	        return nomTheme;
+	    }
+
+	    public void setNomTheme(String nomTheme) {
+	        this.nomTheme = nomTheme;
+	    }
+
+	    public File getImportFile() {
+	        return importFile;
+	    }
+
+	    public void setImportFile(File importFile) {
+	        this.importFile = importFile;
+	    }
+
+		public MultipartFile getImportFichier() {
+			return importFichier;
+		}
+
+		public void setImportFichier(MultipartFile importFichier) {
+			this.importFichier = importFichier;
+		}
+}

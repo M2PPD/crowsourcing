@@ -1,42 +1,42 @@
 <div class='container'>
 
-<h1>Page Demandeur</h1>
+  <h1>Page Demandeur</h1>
 
 
 
-<table>
-<tr>
-<th width=1000px><font size="4.5"><span>Liste des thèmes</span></font><th>
-<th><a type="button" class="btn btn-primary" href="/demandeur/newTheme">Ajouter</a></th>
+  <table>
+    <tr>
+      <th width=1000px><font size="4.5"><span>Liste des thèmes</span></font><th>
+      <th><a type="button" class="btn btn-primary" href="/demandeur/newTheme">Ajouter</a></th>
 
-  </tr>
+    </tr>
 
   </table>
 
   <table class='table' border=0 id="listatt" >
-  <tr>
-    <th height=50px width=100px>Id</th>
-    <th height=50px width=350px>Nom thème</th>
-  <th height=50px width=350px></th>
-  </tr>
- 
+    <tr>
+      <th height=50px width=100px>Id</th>
+      <th height=50px width=350px>Nom thème</th>
+      <th height=50px width=350px></th>
+    </tr>
 
 
-  <% _.each(themes,function(theme) { %>
- 
- <tr data-id="<%= theme.id %>" data-model="theme">
-  <td><%= theme.id %></td>
-  <td><%= theme.nom_theme %></td>
-  <td><button type="button" class="btn btn-success">Ajouter un fichier</button></td>
-  </tr>
-  
-  
+
+    <% _.each(themes,function(theme) { %>
+
+    <tr data-id="<%= theme.id %>" data-model="theme">
+      <td><%= theme.id %></td>
+      <td><%= theme.nom_theme %></td>
+      <td><button type="button" class="btn btn-success"><a href="/import/consulter/">Ajouter un fichier</button></td>
+    </tr>
+
+
     <% }) %>
 
- </table>
+  </table>
 
 
-  </div>
+</div>
 
 
 

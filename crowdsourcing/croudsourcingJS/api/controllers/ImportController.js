@@ -4,6 +4,11 @@ module.exports = {
     res.view();
   },
 
+  'sucess':function (req,res){
+    res.view();
+  },
+
+
   'fichier':function (req,res) {
     var Client = require('node-rest-client').Client;
     var client = new Client();
@@ -13,7 +18,7 @@ module.exports = {
       maxBytes: 100000000
     }, function whenDone(err,uploadedFiles){
 
-      console.log(uploadedFiles);
+
       if (err) {
         return res.negotiate(err);
       }
@@ -23,12 +28,13 @@ module.exports = {
       }
       var args = {
         data:{test:"hello"},
+        parameters:{fileAccess: uploadedFiles[0].fd},
         header:{"Content-Type": "application/json"}
       };
       // var baseUrl = sails.config.custom.baseUrl;
-      client.post("http://localhost:8080/import"+"/"+uploadedFiles,args, function(data,response){
+      client.post("http://localhost:8080/import",args, function(data,response){
+        res.redirect('/import/sucess');
 
-        console.log(data);
       });
 
     });

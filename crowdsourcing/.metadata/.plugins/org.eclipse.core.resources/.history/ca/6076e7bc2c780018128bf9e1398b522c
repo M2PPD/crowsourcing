@@ -1,0 +1,126 @@
+package ppdCrowd.Crowdsourcing;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import ppdCrowd.Crowdsourcing.dao.AttributDao;
+import ppdCrowd.Crowdsourcing.dao.FichierDao;
+import ppdCrowd.Crowdsourcing.dao.LigneDao;
+import ppdCrowd.Crowdsourcing.entity.Attribut;
+import ppdCrowd.Crowdsourcing.entity.Fichier;
+import ppdCrowd.Crowdsourcing.entity.Ligne;
+import ppdCrowd.Crowdsourcing.entity.Theme;
+import ppdCrowd.Crowdsourcing.form.ImportForm;
+import ppdCrowd.Crowdsourcing.service.AttributService;
+import ppdCrowd.Crowdsourcing.service.LigneService;
+
+import java.io.*;
+import java.text.AttributedCharacterIterator;
+
+@Controller
+public class ImportController {
+	
+	private static final int maxColumn = 5;
+	private AttributDao attributDao = new AttributDao();
+	private LigneDao ligneDao = new LigneDao();
+	private final AttributService attributService;
+	private final LigneService ligneService;
+	private FichierDao fichierDao;
+	
+	public ImportController(AttributService attributService, LigneService ligneService){
+		this.attributService = attributService;
+		this.ligneService = ligneService;
+	}
+
+//    @PostMapping(value = "import/{uploadedFiles}")
+//    @ResponseBody
+//    public String importFichier(@PathVariable("uploadedFiles")File file) throws IOException {
+//        System.out.println(file);
+//        String csvFile = "Abt.csv";
+//        BufferedReader br = null;
+//        String line = "";
+//        String cvsSplitBy = ",";
+//
+//        br = new BufferedReader(new FileReader(csvFile));
+//        while ((line = br.readLine()) != null) {
+//            String[] lineCompare = line.split(cvsSplitBy);
+//            Fichier fichier = new Fichier();
+//            Theme theme = new Theme();
+//
+//
+//            System.out.println("Line [name= " + lineCompare[1] + " , description=" + lineCompare[2] + " , price=" + lineCompare[3] +"]");
+//        }
+//
+//        return "import";
+//    }
+	
+	@PostMapping(value = "import")
+    @ResponseBody
+    public String importFichier(@RequestParam("fileAccess")String fileAccess, @RequestParam("fileName")String fileName) throws Exception {
+
+        Fichier fichier = new Fichier();
+        fichier.setNomFichier(fileAccess);
+        fichierDao.creer(fichier);
+        /*Theme theme = new Theme();
+        theme.setNomTheme(importFichier.getNomTheme());*/
+
+        String csvFile = fileAccess;
+        BufferedReader br = null;
+        String line = "";
+        String cvsSplitBy = ",";
+
+        br = new BufferedReader(new FileReader(csvFile));
+        boolean firstLine = true;
+        while ((line = br.readLine()) != null) {
+            String[] lineCompare = line.split(cvsSplitBy);
+            if(firstLine){
+            	firstLine = attributService.initAttributImport(lineCompare);
+            }else{
+            	int champ = 0;
+            	Ligne ligne = new Ligne();
+            	for(String ligneValue : lineCompare){
+            		ligne = ligneService.setLigne(ligne,ligneValue,champ);
+            		champ++;
+            	}
+            	ligneDao.creer(ligne);
+            }
+            
+           
+        }
+
+        return "import";
+    }
+
+//    @PostMapping(value = "import")
+//    @ResponseBody
+//    
+//    public String importFichierTest(@RequestBody ImportForm importFichier) throws Exception {
+//       // System.out.println(importFichier.getImportFile());
+//
+//    	String csvFile = "Abt.csv";
+//        BufferedReader br = null;
+//        String line = "";
+//        String cvsSplitBy = ",";
+//
+//        br = new BufferedReader(new FileReader(csvFile));
+//        boolean firstLine = true;
+//        while ((line = br.readLine()) != null) {
+//            String[] lineCompare = line.split(cvsSplitBy);
+//            if(firstLine){
+//            	firstLine = attributService.initAttributImport(lineCompare);
+//            }else{
+//            	int champ = 0;
+//            	Ligne ligne = new Ligne();
+//            	for(String ligneValue : lineCompare){
+//            		ligne = ligneService.setLigne(ligne,ligneValue,champ);
+//            		champ++;
+//            	}
+//            	ligneDao.creer(ligne);
+//            }
+//            
+//           
+//        }
+//
+//        return "import";
+//    }
+}

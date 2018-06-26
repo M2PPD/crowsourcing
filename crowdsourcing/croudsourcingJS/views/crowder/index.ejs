@@ -1,90 +1,90 @@
 <div class='container'>
 
-<h1>Page Crowder</h1>
+  <h1>Page Crowder</h1>
 
 
-<table>
-<tr>
-<th width=1000px><font size="4.5"><span>Liste des thèmes</span></font><th>
- 
+  <table>
+    <tr>
+      <th width=1000px><font size="4.5"><span>Liste des thèmes</span></font><th>
 
-  </tr>
+
+    </tr>
 
   </table>
 
   <table class='table' border=0 id="listatt" >
-  <tr>
-    <th height=50px width=100px>Id</th>
-    <th height=50px width=350px>Nom thème</th>
-  <th height=50px width=350px></th>
-  </tr>
- 
+    <tr>
+      <th height=50px width=100px>Id</th>
+      <th height=50px width=350px>Nom thème</th>
+      <th height=50px width=350px></th>
+    </tr>
 
 
-  <% _.each(themes,function(theme) { %>
- 
- <tr data-id="<%= theme.id %>" data-model="theme">
-  <td><%= theme.id %></td>
-  <td><%= theme.nom_theme %></td>
- 
-  
-  
-  <td> <button class="btn btn-sm btn-primary"  onclick="Fonction1('<%= JSON.stringify(data[theme.id]) %>','<%= session.utilisateur.id %>')">Consulter les questions</button></td>
-   
 
-<div id="myModal" class="modal">
+    <% _.each(themes,function(theme) { %>
 
-  <!-- Modal content -->
-  <div class="modal-content">
-  <div class="modal-header">
-    <span class="close" onclick="Fonction2()">&times;</span>
-    <h4>CrowdMD</h4>
-  </div>
-  <div class="modal-body">
-    
-	
-  <p>Les champs</p>
-  
-  <div id="tuples">
-  
-  </div>
-  <!--
-  <span id="tuple1">TupleTest</span>
-	
-	 <p id="tuple2">TupleTest</p>
-	 
-	 -->
-	
-  </div>
-  <div class="modal-footer" id="modal-footer">
-  
-  
-    <!--
-    <h4 style="display:inline-block; float:left;" onclick="precedent( ['tuple1', 'tuple2', 'tuple3', 'tuple4', 'tuple5', 'tuple6', 'tuple7', 'tuple8', 'tuple9', 'tuple10', 'tuple11'])">Precedent</h4>
-    <h4 style="display:inline-block;" onclick="suivant( ['tuple1', 'tuple2', 'tuple3', 'tuple4', 'tuple5', 'tuple6', 'tuple7', 'tuple8', 'tuple9', 'tuple10', 'tuple11'])">Suivant</h4>
-	
-	-->
-  </div>
+    <tr data-id="<%= theme.id %>" data-model="theme">
+      <td><%= theme.id %></td>
+      <td><%= theme.nom_theme %></td>
+
+
+
+      <td> <button class="btn btn-sm btn-primary"  onclick="Fonction1('<%= JSON.stringify(data[theme.id]) %>','<%= session.utilisateur.id %>')">Consulter les questions</button></td>
+
+
+      <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <span class="close" onclick="Fonction2()">&times;</span>
+            <h4>CrowdMD</h4>
+          </div>
+          <div class="modal-body">
+
+
+            <p>Les champs</p>
+
+            <div id="tuples">
+
+            </div>
+            <!--
+            <span id="tuple1">TupleTest</span>
+
+               <p id="tuple2">TupleTest</p>
+
+               -->
+
+          </div>
+          <div class="modal-footer" id="modal-footer">
+
+
+            <!--
+            <h4 style="display:inline-block; float:left;" onclick="precedent( ['tuple1', 'tuple2', 'tuple3', 'tuple4', 'tuple5', 'tuple6', 'tuple7', 'tuple8', 'tuple9', 'tuple10', 'tuple11'])">Precedent</h4>
+            <h4 style="display:inline-block;" onclick="suivant( ['tuple1', 'tuple2', 'tuple3', 'tuple4', 'tuple5', 'tuple6', 'tuple7', 'tuple8', 'tuple9', 'tuple10', 'tuple11'])">Suivant</h4>
+
+            -->
+          </div>
+        </div>
+
+      </div>
+
+
+    </tr>
+
+
+    <% }) %>
+
+  </table>
+
+
+
 </div>
 
-</div>
+<script>
 
-
-  </tr>
-  
-
-   <% }) %>
-
- </table>
-
-
-
-  </div>
-
-  <script>
-  
   var counter=0;
-  
+
   var crowderId;
   var compID=[];
   var att1=[];
@@ -92,178 +92,178 @@
   var att3=[];
   var att4=[];
   var sim=[];
-  
-   function suivant(valeur,crowdId) {
-	   crowderId=crowdId;
-	   
 
-	   document.getElementById('boutton').disabled=true;
-	   document.getElementById('left').style.display="none";
-	  var radios = document.getElementsByName('optradio');
-	 
-var rad;
-for(var i = 0; i < radios.length; i++){
- if(radios[i].checked){
- rad = radios[i].value;
- radios[i].checked=false;
+  function suivant(valeur,crowdId) {
+    crowderId=crowdId;
 
 
- }
-}
+    document.getElementById('boutton').disabled=true;
+    document.getElementById('left').style.display="none";
+    var radios = document.getElementsByName('optradio');
 
- sim[counter]=rad;
- 
- if(rad=="false")
- {
-	
- att1[counter]=document.getElementById('leftChamp1').checked;
-att2[counter]=document.getElementById('leftChamp2').checked;
- att3[counter]=document.getElementById('leftChamp3').checked;
- att4[counter]=document.getElementById('leftChamp4').checked;
- }
- 
+    var rad;
+    for(var i = 0; i < radios.length; i++){
+      if(radios[i].checked){
+        rad = radios[i].value;
+        radios[i].checked=false;
 
-  
-	     counter++;
-	var test = JSON.parse (valeur.replace(/[#]/g, "\""));
-  
-     document.getElementById('L1Champs1').innerText=test[counter].idLigne1.champs1;
-	 document.getElementById('L1Champs2').innerText=test[counter].idLigne1.champs2;
-	 	 document.getElementById('L1Champs3').innerText=test[counter].idLigne1.champs3;
-		  document.getElementById('L1Champs4').innerText=test[counter].idLigne1.champs4;
-		  
-	        document.getElementById('L2Champs1').innerText=test[counter].idLigne2.champs1;
-	 document.getElementById('L2Champs2').innerText=test[counter].idLigne2.champs2;
-	 	 document.getElementById('L2Champs3').innerText=test[counter].idLigne2.champs3;
-		  document.getElementById('L2Champs4').innerText=test[counter].idLigne2.champs4;
-		  
-		  compID[counter]=test[counter].id;
-		 
-		   
-		   
-		 if(counter>8)
-		 {			 
 
-		  document.getElementById('suivant').innerHTML= "<input type=\"button\" class=\"btn btn-warning\" id=\"boutton\"  value=\"Terminer\" onclick=\"terminer('"+compID+"','"+sim+"','"+att1+"','"+att2+"','"+att3+"','"+att4+"')\"  disabled>";
-		 }
- 
-}
+      }
+    }
 
-function terminer(compID,sim,att1,att2,att3,att4)
-{
-	
-	var com=compID.split(",");
-	
-	var sm=sim.split(",");
-	
-	var chmp1=att1.split(",");
+    sim[counter]=rad;
 
-	
-	var chmp2=att2.split(",");
-	
-	var chmp3=att3.split(",");
-	
-	var chmp4=att4.split(",");
- 			
-			if(sm[counter]=='false')
-			{	
-           chmp1[counter]=document.getElementById('leftChamp1').checked;
-		   chmp2[counter]=document.getElementById('leftChamp2').checked;
-           chmp3[counter]=document.getElementById('leftChamp3').checked;
-           chmp4[counter]=document.getElementById('leftChamp4').checked;
-			}
-			else{
-				chmp1[counter]="";
-		   chmp2[counter]="";
-           chmp3[counter]="";
-           chmp4[counter]="";
-			}
-	
- var radios = document.getElementsByName('optradio');
-var rad;
-for(var i = 0; i < radios.length; i++){
- if(radios[i].checked){
- rad = radios[i].value;
- sm[counter]=rad;
+    if(rad=="false")
+    {
 
- }
-}	   
-	   alert("Vos réponses sont enregistrées!");
-
-	
-	window.location = "/crowder/createComparaison?crowderId="+crowderId+"&comparaisonId="+com+"&similaire="+sm+"&champ1="+chmp1+"&champ2="+chmp2+"&champ3="+chmp3+"&champ4="+chmp4+"&counter="+counter;
-}
-
-function leftFunction()
-{
-	
-	document.getElementById('boutton').disabled=false;
-
-var radios = document.getElementsByName('optradio');
-var rad;
-for(var i = 0; i < radios.length; i++){
- if(radios[i].checked){
- rad = radios[i].value;
- }
-}
-if(rad=="false"){
-	
-	
-	document.getElementById('left').style.display="block";
-	document.getElementById('left').innerHTML="<table><tr><td>Attribut1</td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input class='form-check-input' type='checkbox' value='' id='leftChamp1'></td></tr><tr><td>Attribut2</td><td></td><td><input class='form-check-input' type='checkbox' value='' id='leftChamp2'></td></tr><tr><td>Attribut3</td><td></td><td><input class='form-check-input' type='checkbox' value='' id='leftChamp3'></td></tr><tr><td>Attribut4</td><td></td><td><input class='form-check-input' type='checkbox' value='' id='leftChamp4'></td></tr></table>";
-	
-	
-	
-}
-
-else{
-	document.getElementById('left').style.display="none";
-	
-
-}
- 
+      att1[counter]=document.getElementById('leftChamp1').checked;
+      att2[counter]=document.getElementById('leftChamp2').checked;
+      att3[counter]=document.getElementById('leftChamp3').checked;
+      att4[counter]=document.getElementById('leftChamp4').checked;
+    }
 
 
 
-}
-  
+    counter++;
+    var test = JSON.parse (valeur.replace(/[#]/g, "\""));
+
+    document.getElementById('L1Champs1').innerText=test[counter].idLigne1.champs1;
+    document.getElementById('L1Champs2').innerText=test[counter].idLigne1.champs2;
+    document.getElementById('L1Champs3').innerText=test[counter].idLigne1.champs3;
+    document.getElementById('L1Champs4').innerText=test[counter].idLigne1.champs4;
+
+    document.getElementById('L2Champs1').innerText=test[counter].idLigne2.champs1;
+    document.getElementById('L2Champs2').innerText=test[counter].idLigne2.champs2;
+    document.getElementById('L2Champs3').innerText=test[counter].idLigne2.champs3;
+    document.getElementById('L2Champs4').innerText=test[counter].idLigne2.champs4;
+
+    compID[counter]=test[counter].id;
+
+
+
+    if(counter>8)
+    {
+
+      document.getElementById('suivant').innerHTML= "<input type=\"button\" class=\"btn btn-warning\" id=\"boutton\"  value=\"Terminer\" onclick=\"terminer('"+compID+"','"+sim+"','"+att1+"','"+att2+"','"+att3+"','"+att4+"')\"  disabled>";
+    }
+
+  }
+
+  function terminer(compID,sim,att1,att2,att3,att4)
+  {
+
+    var com=compID.split(",");
+
+    var sm=sim.split(",");
+
+    var chmp1=att1.split(",");
+
+
+    var chmp2=att2.split(",");
+
+    var chmp3=att3.split(",");
+
+    var chmp4=att4.split(",");
+
+    if(sm[counter]=='true')
+    {
+      chmp1[counter]=document.getElementById('leftChamp1').checked;
+      chmp2[counter]=document.getElementById('leftChamp2').checked;
+      chmp3[counter]=document.getElementById('leftChamp3').checked;
+      chmp4[counter]=document.getElementById('leftChamp4').checked;
+    }
+    else{
+      chmp1[counter]="";
+      chmp2[counter]="";
+      chmp3[counter]="";
+      chmp4[counter]="";
+    }
+
+    var radios = document.getElementsByName('optradio');
+    var rad;
+    for(var i = 0; i < radios.length; i++){
+      if(radios[i].checked){
+        rad = radios[i].value;
+        sm[counter]=rad;
+
+      }
+    }
+    alert("Vos réponses sont enregistrées!");
+
+
+    window.location = "/crowder/createComparaison?crowderId="+crowderId+"&comparaisonId="+com+"&similaire="+sm+"&champ1="+chmp1+"&champ2="+chmp2+"&champ3="+chmp3+"&champ4="+chmp4+"&counter="+counter;
+  }
+
+  function leftFunction()
+  {
+
+    document.getElementById('boutton').disabled=false;
+
+    var radios = document.getElementsByName('optradio');
+    var rad;
+    for(var i = 0; i < radios.length; i++){
+      if(radios[i].checked){
+        rad = radios[i].value;
+      }
+    }
+    if(rad=="true"){
+
+
+      document.getElementById('left').style.display="block";
+      document.getElementById('left').innerHTML="Quels sont les champs similaires?</br><table><tr><td>Numero Poduit</td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input class='form-check-input' type='checkbox' value='' id='leftChamp1'></td></tr><tr><td>Designation</td><td></td><td><input class='form-check-input' type='checkbox' value='' id='leftChamp2'></td></tr><tr><td>Description</td><td></td><td><input class='form-check-input' type='checkbox' value='' id='leftChamp3'></td></tr><tr><td>Prix</td><td></td><td><input class='form-check-input' type='checkbox' value='' id='leftChamp4'></td></tr></table>";
+
+
+
+    }
+
+    else{
+      document.getElementById('left').style.display="none";
+
+
+    }
+
+
+
+
+  }
+
   function Fonction1(d,crowdId) {
-  
-	var a=  d.replace(/["]/g, "#");
-	
-	var test = JSON.parse (d);
 
-	counter=0;
+    var a=  d.replace(/["]/g, "#");
+
+    var test = JSON.parse (d);
+
+    counter=0;
 
     var modal = document.getElementById('myModal');
-	modal.style.display = "block";
-	
-	
-	compID[counter]=test[counter].id;
-	
-	document.getElementById('tuples').innerHTML="<table border='2' cellspacing='12' cellpadding='20'><tr><span id=\"attribut1\"><th>Attribut 1 </th></span><span id=\"attribut2\"><th>Attribut 2 </th></span><span id=\"attribut3\"><th>Attribut 3 </th></span><span id=\"attribut4\"><th>Attribut 4 </th></span></tr><tr><td><span id=\"L1Champs1\">"+test[counter].idLigne1.champs1+"</span></td><td><span id=\"L1Champs2\">"+test[counter].idLigne1.champs2+"</span></td><td><span id=\"L1Champs3\">"+test[counter].idLigne1.champs3+"</span></td><td><span id=\"L1Champs4\">"+test[counter].idLigne1.champs4+"</span></td><tr><td><span id=\"L2Champs1\">"+test[counter].idLigne2.champs1+"</span></td><td><span id=\"L2Champs2\">"+test[counter].idLigne2.champs2+"</span></td><td><span id=\"L2Champs3\">"+test[counter].idLigne2.champs3+"</span></td><td><span id=\"L2Champs4\">"+test[counter].idLigne2.champs4+"</span></td></tr></table><label class='radio-inline' style='margin-left:50%;'><input type='radio' name='optradio' onclick='leftFunction()' value=true>Oui</label><label class='radio-inline'><input type='radio' name='optradio' onclick='leftFunction()' value=false>Non</label><span id='left'></left>";
-	
-	
-	
-	document.getElementById('modal-footer').innerHTML= "<h4 style=\"display:inline-block; float:left;\"></h4><span id=\"suivant\"><input style=\"display:inline-block;\" onclick=\"suivant('"+a+"','"+crowdId+"')\" type=\"button\" class=\"btn btn-success\" value=\"suivant\" id=\"boutton\" disabled></input></span>";
+    modal.style.display = "block";
 
 
-	}
+    compID[counter]=test[counter].id;
+
+    document.getElementById('tuples').innerHTML="<table border='2' cellspacing='12' cellpadding='20'><tr><span id=\"attribut1\"><th>Numero produit </th></span><span id=\"attribut2\"><th>Designation</th></span><span id=\"attribut3\"><th>Description</th></span><span id=\"attribut4\"><th>Prix</th></span></tr><tr><td><span id=\"L1Champs1\">"+test[counter].idLigne1.champs1+"</span></td><td><span id=\"L1Champs2\">"+test[counter].idLigne1.champs2+"</span></td><td><span id=\"L1Champs3\">"+test[counter].idLigne1.champs3+"</span></td><td><span id=\"L1Champs4\">"+test[counter].idLigne1.champs4+"</span></td><tr><td><span id=\"L2Champs1\">"+test[counter].idLigne2.champs1+"</span></td><td><span id=\"L2Champs2\">"+test[counter].idLigne2.champs2+"</span></td><td><span id=\"L2Champs3\">"+test[counter].idLigne2.champs3+"</span></td><td><span id=\"L2Champs4\">"+test[counter].idLigne2.champs4+"</span></td></tr></table><span style='margin-left:30%;'>Similaires?</span><label class='radio-inline' style='margin-left:10%;'><input type='radio' name='optradio' onclick='leftFunction()' value=true>Oui</label><label class='radio-inline'><input type='radio' name='optradio' onclick='leftFunction()' value=false>Non</label><span id='left'></left>";
+
+
+
+    document.getElementById('modal-footer').innerHTML= "<h4 style=\"display:inline-block; float:left;\"></h4><span id=\"suivant\"><input style=\"display:inline-block;\" onclick=\"suivant('"+a+"','"+crowdId+"')\" type=\"button\" class=\"btn btn-success\" value=\"suivant\" id=\"boutton\" disabled></input></span>";
+
+
+  }
 
   function Fonction2() {
     var modal = document.getElementById('myModal');
-	modal.style.display = "none";
-}
-  </script>
+    modal.style.display = "none";
+  }
+</script>
 <script>
-// Get the modal
-var modal = document.getElementById('myModal');
+  // Get the modal
+  var modal = document.getElementById('myModal');
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+  // Get the button that opens the modal
+  var btn = document.getElementById("myBtn");
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
 
 
 

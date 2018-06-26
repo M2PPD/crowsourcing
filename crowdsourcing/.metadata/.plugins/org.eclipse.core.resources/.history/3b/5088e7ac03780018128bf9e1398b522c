@@ -1,0 +1,30 @@
+package ppdCrowd.Crowdsourcing.service;
+
+import org.springframework.stereotype.Service;
+
+import ppdCrowd.Crowdsourcing.dao.AttributDao;
+import ppdCrowd.Crowdsourcing.entity.Attribut;
+
+@Service
+public class AttributService {
+	
+    private static final int maxColumn = 5;
+    private AttributDao attributDao = new AttributDao();
+   
+	public boolean initAttributImport(String[] ligneCompare) throws Exception{
+            int nombreColumn = ligneCompare.length;
+            if(nombreColumn > maxColumn){
+                return false;
+            }else{
+            	int place = 0;
+                for(String attributName : ligneCompare){
+                	Attribut attribut = new Attribut(attributName,place);
+                	place++;
+                	attributDao.creer(attribut);
+                }
+            }
+		
+		return false;
+	}
+	
+}
